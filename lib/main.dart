@@ -55,14 +55,38 @@ class MyApp extends StatelessWidget {
 
   Future createUser({required name}) async {
     ///  Reference to document
-    final docUser = FirebaseFirestore.instance.collection('users').doc('my_id');
-    final json = {
-      'name': name,
-      'age': 21,
-      'birthday': DateTime(2001, 2, 23),
-    };
+    final docUser = FirebaseFirestore.instance.collection('users').doc();
+
+    final user = User(
+      id: docUser.id,
+      name: name,
+      age: 27,
+      birthday: DateTime(1998, 7, 12),
+    );
+    final json = user.toJson();
 
     /// Create document and write data to Firebase
     await docUser.set(json);
   }
+}
+
+class User {
+  User({
+    this.id = '',
+    required this.name,
+    required this.age,
+    required this.birthday,
+  });
+
+  String id;
+  final String name;
+  final int age;
+  final DateTime birthday;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'age': age,
+        'birthday': birthday,
+      };
 }
