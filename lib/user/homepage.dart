@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Posting test'),
+        title: const Text('Users Screen'),
       ),
       body: Center(
         child: Column(
@@ -24,8 +24,10 @@ class HomePage extends StatelessWidget {
                 controller: controller,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'Enter a username',
+                  hintText: 'username(age=27 & birthday= 1998/7/12)',
                   labelText: 'User',
+                  hintMaxLines: 2,
+                  hintStyle: TextStyle(fontSize: 15),
                 ),
               ),
             ),
@@ -35,17 +37,8 @@ class HomePage extends StatelessWidget {
                 final name = controller.text;
                 createUser(name: name);
               },
-              child: const Icon(Icons.add),
+              child: const Text('Add User'),
             ),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //             builder: (context) => const CreateUserPage()));
-            //   },
-            //   child: const Text('user with more info'),
-            // ),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -53,7 +46,7 @@ class HomePage extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => const ShowUserPage()));
               },
-              child: const Text('Show users'),
+              child: const Text('Show Users'),
             ),
           ],
         ),
