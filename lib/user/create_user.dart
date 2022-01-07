@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 
 import 'user.dart';
 
-class UserPage extends StatefulWidget {
-  const UserPage({Key? key}) : super(key: key);
+class CreateUserPage extends StatefulWidget {
+  const CreateUserPage({Key? key}) : super(key: key);
 
   @override
-  _UserPageState createState() => _UserPageState();
+  _CreateUserPageState createState() => _CreateUserPageState();
 }
 
-class _UserPageState extends State<UserPage> {
+class _CreateUserPageState extends State<CreateUserPage> {
   final nameController = TextEditingController();
   final ageController = TextEditingController();
   final TextEditingController dateController = TextEditingController();

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class User {
   User({
     this.id = '',
@@ -17,4 +19,10 @@ class User {
         'age': age,
         'birthday': birthday,
       };
+  factory User.fromJson(Map<String, dynamic> json) => User(
+        id: json['id'],
+        name: json['name'],
+        age: json['age'],
+        birthday: (json['birthday'] as Timestamp).toDate(),
+      );
 }
