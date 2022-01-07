@@ -1,3 +1,5 @@
+import 'package:firebase_app/user/create_user.dart';
+import 'package:firebase_app/user/single_user.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'user.dart';
@@ -20,8 +22,26 @@ class ShowUserPage extends StatelessWidget {
           } else if (snapshot.hasData) {
             final users = snapshot.data!;
 
-            return ListView(
-              children: users.map(buildUser).toList(),
+            // return ListView(
+            //   children: users.map(buildUser).toList(),
+            // );
+            return ListView.builder(
+              itemCount: users.length,
+              itemBuilder: (context, index) => ListTile(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SingleUser(id: users[index].id),
+                    ),
+                  );
+                },
+                leading: CircleAvatar(
+                  child: Text('${users[index].age}'),
+                ),
+                title: Text(users[index].name),
+                subtitle: Text(users[index].birthday.toIso8601String()),
+              ),
             );
           } else {
             return const Center(
@@ -30,10 +50,20 @@ class ShowUserPage extends StatelessWidget {
           }
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const CreateUserPage()),
+          );
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 
   Widget buildUser(User user) => ListTile(
+        onTap: () {},
         leading: CircleAvatar(
           child: Text('${user.age}'),
         ),
