@@ -1,6 +1,7 @@
 import 'package:firebase_app/user/show_user.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'update_delete.dart';
 import 'user.dart';
 
 class HomePage extends StatelessWidget {
@@ -47,6 +48,16 @@ class HomePage extends StatelessWidget {
                         builder: (context) => const ShowUserPage()));
               },
               child: const Text('Show Users'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const UpdateDeleteUser()),
+                );
+              },
+              child: const Text('Update test'),
             ),
           ],
         ),
