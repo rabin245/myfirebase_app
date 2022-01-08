@@ -63,7 +63,6 @@ class ShowUserPage extends StatelessWidget {
   }
 
   Widget buildUser(User user) => ListTile(
-        onTap: () {},
         leading: CircleAvatar(
           child: Text('${user.age}'),
         ),

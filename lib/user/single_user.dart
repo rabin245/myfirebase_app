@@ -16,22 +16,55 @@ class SingleUser extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Single User'),
       ),
-      body: FutureBuilder<User?>(
-        future: readSingleUser(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return Text('Something\'s wrong! ${snapshot.error}');
-          } else if (snapshot.hasData) {
-            final user = snapshot.data;
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          FutureBuilder<User?>(
+            future: readSingleUser(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return Text('Something\'s wrong! ${snapshot.error}');
+              } else if (snapshot.hasData) {
+                final user = snapshot.data;
 
-            // return buildUser(user!);
-            return user == null
-                ? const Center(child: Text('No user'))
-                : buildUser(user);
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
+                // return buildUser(user!);
+                return user == null
+                    ? const Center(child: Text('No user'))
+                    : buildUser(user);
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 98.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  child: const Text('Update Name'),
+                  onPressed: () {
+                    final docUser =
+                        FirebaseFirestore.instance.collection('users').doc(id);
+
+                    docUser.update({
+                      'name': 'Update name of $id',
+                    });
+                  },
+                ),
+                ElevatedButton(
+                  child: const Text('Delete'),
+                  onPressed: () {
+                    final docUser =
+                        FirebaseFirestore.instance.collection('users').doc(id);
+
+                    docUser.delete();
+                  },
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

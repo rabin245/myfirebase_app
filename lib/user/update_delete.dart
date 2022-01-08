@@ -23,7 +23,7 @@ class UpdateDeleteUser extends StatelessWidget {
 
                 //  update specific field
                 //  unlike set which sets all fields and assigns new values from start
-                //  update only updatess specific fields
+                //  update only updates specific fields
                 docUser.update({
                   'name': 'Update name',
                   // 'city.name': 'KTM',
