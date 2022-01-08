@@ -1,7 +1,7 @@
-import 'package:firebase_app/post/post_homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'post/post_option.dart';
 import 'user/homepage.dart';
 
 Future main() async {
@@ -47,7 +47,7 @@ class Options extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MainPage()),
+                  MaterialPageRoute(builder: (context) => PostOption()),
                 );
               },
               child: const Text('Pagination Screen'),
