@@ -1,3 +1,4 @@
+import 'package:firebase_app/post/post_homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -43,8 +44,13 @@ class Options extends StatelessWidget {
               child: const Text('User Screen'),
             ),
             ElevatedButton(
-              onPressed: () {},
-              child: const Text('Page Screen'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MainPage()),
+                );
+              },
+              child: const Text('Pagination Screen'),
             ),
           ],
         ),
