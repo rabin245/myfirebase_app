@@ -36,7 +36,9 @@ class SecondPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 final post = snapshot.docs[index].data();
 
-                if (snapshot.hasMore && index + 1 == snapshot.docs.length) {
+                if (snapshot.hasMore &&
+                    index + 1 == snapshot.docs.length &&
+                    !snapshot.isFetchingMore) {
                   // Tell FirestoreQueryBuilder to try to obtain more items.
                   // It is safe to call this function from within the build method.
                   snapshot.fetchMore();
