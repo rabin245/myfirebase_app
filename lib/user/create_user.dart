@@ -83,19 +83,21 @@ class _CreateUserPageState extends State<CreateUserPage> {
     );
 
     setState(() {
+      // dateController.text =
+      //     '${date!.year.toString()}-${zeroSuffix(date.month)}-${zeroSuffix(date.day)}';
       dateController.text =
-          '${date!.year.toString()}-${zeroSuffix(date.month)}-${zeroSuffix(date.day)}';
+          '${date!.year.toString()}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
       // print(dateController.text);
       // print(date.toString());
     });
   }
 
-  String zeroSuffix(int value) {
-    if (value >= 10) {
-      return value.toString();
-    }
-    return '0${value.toString()}';
-  }
+  // String zeroSuffix(int value) {
+  //   if (value >= 10) {
+  //     return value.toString();
+  //   }
+  //   return '0${value.toString()}';
+  // }
 
   Future createUser(User user) async {
     final docUser = FirebaseFirestore.instance.collection('users').doc();
